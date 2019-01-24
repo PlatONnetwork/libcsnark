@@ -1,0 +1,25 @@
+result = pow（（(a%b)*c），5000）
+a= 8 b=5 c=3 
+result = 6
+
+(leave) Call to generateConstraints        	[0.9774s x0.99]
+(leave) Call to generateWitness            	[0.2128s x0.95]
+(leave) Call to r1cs_ppzksnark_generator   	[137.3731s x0.99]
+(leave) Call to r1cs_ppzksnark_prover      	[32.4736s x0.97]
+(leave) Call to r1cs_ppzksnark_verifier_strong_IC	[0.0844s x0.53]
+
+mem 44% (totalmem 3GB)
+
+8000:
+(leave) Call to generateConstraints        	[1.5845s x0.98]
+(leave) Call to generateWitness            	[0.3504s x0.94]
+(leave) Call to r1cs_ppzksnark_generator   	[213.7609s x0.98]
+(leave) Call to r1cs_ppzksnark_prover      	[48.9523s x0.98]	
+(leave) Call to r1cs_ppzksnark_verifier_strong_IC	[0.0651s x0.66]
+Number of R1CS constraints: 672000
+
+9000:
+(enter) Call to generateConstraints        	[             ]	(1542876712.3794s x0.00 from start)
+(leave) Call to generateConstraints        	[1.7668s x0.98]	(1542876714.1463s x0.00 from start)
+(enter) Call to generateWitness            	[             ]	(1542876714.1464s x0.00 from start)
+(leave) Call to generateWitness            	[0.4044s x0.94]	(1542876714.5508s x0.00 from start)
