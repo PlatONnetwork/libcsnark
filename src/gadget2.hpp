@@ -1167,17 +1167,14 @@ class UDivision_Gadget: public Gadget
                             const Variable& R);
 
   private:
-    static const int BIT_SIZE = WORD_BIT_SIZE;
 
     const Variable A_;
     const Variable B_;
     const Variable Q_;
     const Variable R_;
-    const Variable sign_;
     const Variable less_;
 
-    GadgetPtr comparsionGadget1_;
-    GadgetPtr comparsionGadget2_;
+    GadgetPtr comparsionGadget_;
 
     DISALLOW_COPY_AND_ASSIGN(UDivision_Gadget);
 };
