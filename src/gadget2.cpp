@@ -248,6 +248,11 @@ void R1P_SREM_Gadget::generateConstraints()
 
 void R1P_SREM_Gadget::generateWitness()
 {
+  if(val(B_)==0){
+    val(result_) = val(A_);
+    val(C_) = 0;
+    printf("!!! skip %ld %% %ld\n", val(A_).asLong(), val(B_).asLong());
+  }else{
     val(C_) = val(A_).asLong() / val(B_).asLong();
     val(result_) = val(A_) - val(C_) * val(B_);
 
@@ -255,6 +260,7 @@ void R1P_SREM_Gadget::generateWitness()
    // comparsionGadget2_->generateWitness();
 
     printf("!!! %ld = %ld % %ld\n", val(result_).asLong(), val(A_).asLong(), val(B_).asLong());
+  }
 }
 /*********************************/
 /***    END OF R1P_SREM_Gadget  ***/
@@ -292,9 +298,15 @@ void R1P_SDIV_Gadget::generateConstraints()
 
 void R1P_SDIV_Gadget::generateWitness()
 {
+  if(val(B_)==0){
+    val(C_) = val(A_);
+    val(result_) = 0;
+    printf("!!! skip %ld / %ld\n", val(A_).asLong(), val(B_).asLong());
+  }else{
     val(result_) = val(A_).asLong() / val(B_).asLong();
     val(C_) = val(A_) - val(result_) * val(B_);
     printf("!!! %ld = %ld / %ld\n", val(result_).asLong(), val(A_).asLong(), val(B_).asLong());
+  }
 }
 /*********************************/
 /***    END OF R1P_SDIV_Gadget  ***/
@@ -334,7 +346,7 @@ void R1P_UREM_Gadget::generateWitness()
 {
 
   udivision_Gadget->generateWitness();
-  printf("!!! %lu = %lu % %lu\n", val(R_).asLong(), val(A_).asLong(), val(B_).asLong());
+  printf("!!! %lu = %lu %% %lu\n", val(R_).asLong(), val(A_).asLong(), val(B_).asLong());
 }
 
 /*********************************/
@@ -865,6 +877,7 @@ void R1P_NEQ_Gadget::init()
 void R1P_NEQ_Gadget::generateConstraints()
 {
     addRank1Constraint(A_ - B_, aux_, result_, "(A - B) * aux = result");
+    addRank1Constraint(A_ - B_, 1 - result_, 0, "(A - B) * (1 - result) = 0");
 }
 
 void R1P_NEQ_Gadget::generateWitness()
@@ -1294,6 +1307,10 @@ void UDivision_Gadget::generateConstraints()
 
 void UDivision_Gadget::generateWitness()
 {
+  if(val(B_)==0){
+    val(R_) = val(A_);
+    val(Q_) = 0;
+  }else{
     val(Q_) = (unsigned long)(val(A_).asLong()) / (unsigned long)(val(B_).asLong());
     val(R_) = (unsigned long)(val(A_).asLong()) % (unsigned long)(val(B_).asLong());
 
@@ -1305,6 +1322,7 @@ void UDivision_Gadget::generateWitness()
     comparsionGadget_->generateWitness();
 
     //printf("!!! %ld = %ld / %ld\n", val(result_).asLong(), val(A_).asLong(), val(B_).asLong());
+  }
 }
 /*********************************/
 /***  END OF UDivision_Gadget  ***/
